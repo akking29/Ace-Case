@@ -1,0 +1,11 @@
+{
+  "name": "acecase",
+  "version": "1.0.0",
+  "description": "mlb lineup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam King & Stephen Boykin",
+  "license": "ISC"
+}

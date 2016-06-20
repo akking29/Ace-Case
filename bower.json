@@ -1,0 +1,17 @@
+{
+  "name": "acecase",
+  "description": "mlb lineup",
+  "main": "index.js",
+  "authors": [
+    "Adam King & Stephen Boykin"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
