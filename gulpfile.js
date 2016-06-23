@@ -10,7 +10,7 @@ var jsSources = ['app/js/*.js'],
    cssSources = ['app/styles/*.css'],
    htmlSources = ['*.html'];
 
-var paths = ['./bower_components/','./app/*.js','./app/**/*.css'];
+var paths = ['/bower_components/','./app/js/*.js','./app/style/*.css','./app/templates/*.html'];
 
 gulp.task('connect', function() {
    connect.server({
