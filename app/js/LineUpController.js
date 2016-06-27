@@ -5,9 +5,9 @@
         .module('app')
         .controller('LineUpController', LineUpController);
 
-    LineUpController.$inject = ['$scope', '$log', 'LineUpFactory'];
+    LineUpController.$inject = ['$scope', '$log', 'LineUpFactory', "NgTableParams"];
 
-    function LineUpController($scope, $log, LineUpFactory) {
+    function LineUpController($scope, $log, LineUpFactory, NgTableParams) {
 
         var vm = this;
         vm.ctrlName = 'LineUpController';
@@ -22,14 +22,20 @@
 
         vm.getPlayers = function() {
             LineUpFactory.getPlayers().then(
-                function(response){
+                function(response) {
                     vm.players = response.data;
+
+                    vm.tableParams = new NgTableParams({}, {
+                        dataset: vm.players
+                    });
+
                     console.log(vm.players);
                 });
         };
 
-      vm.getGames();
-      vm.getPlayers();
+        vm.getGames();
+        vm.getPlayers();
+
         //content
     }
 

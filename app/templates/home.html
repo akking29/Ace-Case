@@ -20,45 +20,83 @@
     <div class='col-xs-6 col-sm-6 col-md-6'>
         <h2>Dynamic Tabs</h2>
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+            <li class="active"><a data-toggle="tab" href="#all">All Players</a></li>
+            <li><a data-toggle="tab" href="#pitcher">P</a></li>
+            <li><a data-toggle="tab" href="#catcher">C</a></li>
+            <li><a data-toggle="tab" href="#firstBase">1B</a></li>
+            <li><a data-toggle="tab" href="#secondBase">2B</a></li>
+            <li><a data-toggle="tab" href="#thirdBase">3B</a></li>
+            <li><a data-toggle="tab" href="#shortStop">SS</a></li>
+            <li><a data-toggle="tab" href="#outfield">OF</a></li>
         </ul>
-        <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <h3>HOME</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <form class="form-inline">
+            <div class="form-group">
+                <label> search </label>
+                <input type='text' ng-model="search" class='form-control'>
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <h3>Menu 1</h3>
+        </form>
+        <div class="tab-content">
+            <div id="all" class="tab-pane fade in active">
+                <h3>All Players</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Team</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="player in vm.players|filter:search|itemsPerPage:10">
+                            <td>{{player.Position}}</td>
+                            <td>{{player.Team}}</td>
+                            <td>{{player.Name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+            <div id="pitcher" class="tab-pane fade">
+                <h3>Pitchers</h3>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div id="menu2" class="tab-pane fade">
-                <h3>Menu 2</h3>
+            <div id="catcher" class="tab-pane fade">
+                <h3>C</h3>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
             </div>
-            <div id="menu3" class="tab-pane fade">
-                <h3>Menu 3</h3>
+            <div id="firstBase" class="tab-pane fade">
+                <h3>1B</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div id="secondBase" class="tab-pane fade">
+                <h3>2B</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div id="thirdBase" class="tab-pane fade">
+                <h3>3B</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div id="shortStop" class="tab-pane fade">
+                <h3>SS</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div id="outfield" class="tab-pane fade">
+                <h3>OF</h3>
                 <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
     <div class="row">
-        <div class='col-xs-6 col-sm-6 col-md-6' ng-repeat='player in vm.players'>
-            <div class="panel panel-primary">
-                <div class='panel-heading text-center'>
-                    <h3 id='title' class="panel-title"><strong>{{player.Name}}</strong> {{player.Team}}</h3>
-                </div>
-                <div class='panel-body text-center'>
-                </div>
-                <div id='infoTab' class="panel-footer text-center">
-                    <button class='btn btn-default'>More Info </button>
-                    </a>
-                </div>
-            </div>
+        <div class="col-md-6">
+            <h3>ngTable </h3>
+            <table ng-table="vm.tableParams" class="table table-condensed table-bordered table-striped">
+                <tr ng-repeat="player in $data">
+                    <td data-title="'Name'" filter="{Name: 'text'}">{{player.Name}}</td>
+                    <td data-title="'Position'" filter="{Position: 'select'}">{{player.Position}}</td>
+                    <td data-title="'Team'" filter="{ Team: 'select'}">{{player.Team}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
