@@ -27,22 +27,40 @@
                         <pre>{{game.OverUnder}}</pre>
                     </div>
                     <div id='infoTab' class="panel-footer text-center">
-                        <button class='btn btn-default'>More Info </button>
+                        <button class='btn btn-default' ng-click='vm.show()'>More Info </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="gameInfo.html">
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h3 class='modal-title text-center'> Hi</h3>
+                </div>
+                <div class='modal-body'>
+                    {{game.OverUnder}}
+                </div>
+                <div class='modal-footer'>
+                    footer
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
     <div class="container">
         <div class='col-xs-12 col-sm-5 col-md-5'>
             <div class="row">
                 <h3 class='text-center'>Today's Players</h3>
                 <div class="dropdown">
                     <select class="btn btn-default btn-block dropdown-toggle" type="select" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-options='Position.Position as Position.Position for Position in vm.lineup' ng-model='Position'>
-                    <option>{{Position}}</option>
+                        <option>{{Position}}</option>
                     </select>
+                    </br>
                 </div>
-                <div class="row" dir-paginate="player in vm.players | filter: {FanDuelPosiPosition: Position} | itemsPerPage: 10 track by $index">
+                <div class="row" dir-paginate="player in vm.players | filter: {FanDuelPosition: Position} | itemsPerPage: 10 track by $index">
                     <div>
                         <button class='btn btn-block' ng-click='vm.addPlayer(player)'>{{player.Name}}</button>
                     </div>

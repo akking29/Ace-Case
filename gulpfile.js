@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 var jsSources = ['app/js/*.js'],
    cssSources = ['app/styles/*.css'],
-   htmlSources = ['*.html'];
+   htmlSources = ['app/templates/*.html'];
 
 var paths = ['/bower_components/','./app/js/*.js','./app/style/*.css','./app/templates/*.html'];
 
