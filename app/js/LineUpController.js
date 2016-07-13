@@ -5,11 +5,12 @@
         .module('app')
         .controller('LineUpController', LineUpController);
 
-    LineUpController.$inject = ['$scope', '$log', 'LineUpFactory'];
+    LineUpController.$inject = ['$scope', '$log', 'LineUpFactory', '$uibModal'];
 
-    function LineUpController($scope, $log, LineUpFactory) {
 
+    function LineUpController($scope, $log, LineUpFactory, $uibModal) {
         var vm = this;
+
         vm.ctrlName = 'LineUpController';
         vm.lineup = [
             { id: 1, Position: "P", player: null },
@@ -30,6 +31,7 @@
             vm.getGames(data).then(vm.getPlayers).then(function(data) {
                 vm.players = data.players;
                 vm.games = data.games;
+                console.log(vm.games);
 
             });
         }
@@ -52,6 +54,43 @@
         };
 
         vm.init();
+        
+        vm.openGameModal = function(data) {
+            var gameInfoModal = $uibModal.open({
+                animation: true,
+                controller: 'GameModalController as gameModal',
+                templateUrl: 'app/templates/gameInfoModal.html',
+                size: 'md',
+                resolve :{
+                    data:function(){
+
+                        return data;
+
+                    }
+                }
+            });
+
+            return gameInfoModal.result;
+        }
+
+        vm.openPlayerModal = function(data) {
+            var gameInfoModal = $uibModal.open({
+                animation: true,
+                controller: 'GameModalController as gameModal',
+                templateUrl: 'app/templates/playerInfoModal.html',
+                size: 'md',
+                resolve :{
+                    data:function(){
+
+                        return data;
+
+                    }
+                }
+            });
+
+            return gameInfoModal.result;
+        }
+        
 
         vm.addPlayer = function(player) {
             var lineup = null;
@@ -92,46 +131,4 @@
         };
     }
 
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app')
-        .controller('GameInfoController', GameInfoController);
-
-    GameInfoController.$inject = ['$scope', 'ModalService'];
-
-    function GameInfoController($scope, ModalService) {
-        var vm = this;
-        vm.show = function() {
-            ModalService.showModal({
-                template: 'gameInfo.html',
-                controller: 'GameModalController'
-            }).then(function(modal) {
-                modal.element.modal();
-                modal.close.then(function(result) {
-                    vm.message = "closing"
-                });
-            });
-        };
-    }
-
-})();
-
-(function() {
-    'use strict';
-    angular
-        .module('app')
-        .controller('GameModalController');
-    GameModalController.$inject = ['$scope', 'close'];
-
-    function GameModalController($scope, close) {
-        var vm = this;
-        vm.close = function(result) {
-            close(result, 500);
-
-        };
-    };
 })();

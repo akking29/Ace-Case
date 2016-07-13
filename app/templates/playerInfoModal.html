@@ -1,0 +1,32 @@
+<div>
+    <div class="modal-body">
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h3 class='modal-title text-center'>{{gameModal.player.Name}} {{gameModal.player.Position}}</h3>
+            </div>
+            <div class='modal-body'>
+                <table class="table table-hover table-striped text-center">
+                    <tbody>
+                    <tr>
+                            <td ng-class='{"table-warning":{{gameModal.player.OnBasePercentage}} < 3, "table-active":{{gameModal.player.OnBasePercentage}} < 6'>Batting Average vs. Opposing Pitcher: {{gameModal.player.OnBasePercentage}}</td>
+                        </tr>
+                        <tr>
+                            <td>Facing: {{gameModal.player.Opponent}}</td>
+                        </tr>
+                         <tr>
+                            <td>Salary: ${{gameModal.player.DraftKingsSalary}}</td>
+                        </tr>
+                         <tr>
+                            <td>Batting Order: {{gameModal.player.BattingOrder}}</td>
+                        </tr>
+                         <tr>
+                            <td>Injured: {{gameModal.player.InjuryStatus}}  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='modal-footer'>
+            </div>
+        </div>
+    </div>
+</div>

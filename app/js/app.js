@@ -2,7 +2,7 @@
     'use strict';
 
     var app = angular
-        .module('app', ['angularUtils.directives.dirPagination','angularModalService', 'ui.router']);
+        .module('app', ['angularUtils.directives.dirPagination', 'ui.bootstrap', 'ui.router']);
 
     app.config(function($stateProvider, $urlRouterProvider) {
 

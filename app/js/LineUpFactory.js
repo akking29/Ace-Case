@@ -22,7 +22,7 @@
 
             $http({
                 method: 'GET',
-                url: 'https://api.fantasydata.net/mlb/v2/JSON/GamesByDate/2016-JUN-29?key=1d7a3c97b3e742b9b1662604691b3cab'
+                url: 'https://api.fantasydata.net/mlb/v2/JSON/GamesByDate/2016-JUL-10?key=1d7a3c97b3e742b9b1662604691b3cab'
             }).then(
                 function(response) {
                     if (typeof response.data === 'object') {

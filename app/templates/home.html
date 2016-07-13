@@ -1,7 +1,7 @@
 <div id="page">
     <div class='row'>
         <div class='col-lg-12'>
-            <h3 class='page-header text-center'>Today's Games</h3>
+            <h3 class='page-header text-center'>Ace Case Batter vs. Pitcher</h3>
         </div>
     </div>
     <div class="container">
@@ -20,64 +20,73 @@
                             <div>Away Pitcher</div>
                             <div>{{game.AwayTeamStartingPitcher}}</div>
                         </div>
-                        <div class='col-lg-12'>
-                            <div class='row'></div>
-                            </br>
-                        </div>
-                        <pre>{{game.OverUnder}}</pre>
+                  
                     </div>
                     <div id='infoTab' class="panel-footer text-center">
-                        <button class='btn btn-default' ng-click='vm.show()'>More Info </button>
+                        <button class='btn' ng-click='vm.openGameModal(game)'>More Info </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="gameInfo.html">
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h3 class='modal-title text-center'> Hi</h3>
-                </div>
-                <div class='modal-body'>
-                    {{game.OverUnder}}
-                </div>
-                <div class='modal-footer'>
-                    footer
-                </div>
-            </div>
+</div>
+<div class="container">
+    <div class='panel panel-primary'>
+        <div class='panel-heading text-center'>
+            <h3 class='text-center'>My Lineup</h3>
         </div>
-    </div>
-    <!-- End Modal -->
-    <div class="container">
-        <div class='col-xs-12 col-sm-5 col-md-5'>
+        <div class='panel-body'>
+            <!-- inside panel -->
             <div class="row">
-                <h3 class='text-center'>Today's Players</h3>
-                <div class="dropdown">
-                    <select class="btn btn-default btn-block dropdown-toggle" type="select" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-options='Position.Position as Position.Position for Position in vm.lineup' ng-model='Position'>
-                        <option>{{Position}}</option>
-                    </select>
-                    </br>
-                </div>
-                <div class="row" dir-paginate="player in vm.players | filter: {FanDuelPosition: Position} | itemsPerPage: 10 track by $index">
-                    <div>
-                        <button class='btn btn-block' ng-click='vm.addPlayer(player)'>{{player.Name}}</button>
+                <div class='col-xs-12 col-sm-6 col-md-6'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading text-center'>
+                            <h4 class='text-center'>Today's Players</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="dropdown">
+                              <span class='pull-left'> Positions: </span> <select class="btn btn-default dropdown-toggle pull-right" type="select" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-options='Position.Position as Position.Position for Position in vm.lineup' ng-model='Position'>
+                                    <option>{{Position}}</option>
+                                </select>
+                            </div>
+                            <br />
+                            <br />
+                            <div dir-paginate="player in vm.players | filter: {FanDuelPosition: Position} | itemsPerPage: 10 track by $index">
+                                {{player.Name}}
+                                <span class='pull-right'><button class='btn btn-primary btn-xs' ng-click='vm.openPlayerModal(player)'><i class="fa fa-info"></i></button></span>
+                                <span class='pull-right'><button class='btn btn-success btn-xs' ng-click='vm.addPlayer(player)'><i class="fa fa-plus"></i></button></span>
+                                <br />
+                                <br />
+                            </div>
+                            <div class='panel-footer text-center'>
+                                <dir-pagination-controls></dir-pagination-controls>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <dir-pagination-controls></dir-pagination-controls>
-        </div>
-        <div class='col-xs-12 col-sm-6 col-md-6 pull-right'>
-            <div class='row'>
-                <h3 class='text-center'>My Lineup</h3>
-                <div class='row' ng-repeat='player in vm.lineup' ng-click='vm.nixPlayer(player)'>
-                    <div>
-                        <button class='btn btn-block'><span class='pull-left'>{{player.Position}}</span> {{player.player.Name}}
-                        </button>
+                <div class='col-xs-12 col-sm-5 col-md-5 pull-right'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading text-center'>
+                            <h4 class='text-center'>DraftKings Lineup</h4>
+                        </div>
+                        <div class='panel-body no-padding'>
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    <tr ng-repeat='player in vm.lineup' ng-click='vm.nixPlayer(player)'>
+                                        <td width="20%">{{player.Position}}</td>
+                                        <td width="80%">{{player.player.Name}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <p >
+                                    <span>{{player.Position}}</span>
+                                    <span class='pull-right'> {{player.player.Name}}</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </br>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+<div>
+    <div class="modal-body">
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h3 class='modal-title text-center'>{{gameModal.game.AwayTeam}} vs. {{gameModal.game.HomeTeam}} </h3>
+            </div>
+            <div class='modal-body'>
+                <table class="table table-hover table-striped text-center">
+                    <tbody>
+                        <tr>
+                            <td>OverUnder: {{gameModal.game.OverUnder}}</td>
+                        </tr>
+                         <tr>
+                            <td>Temperature: {{gameModal.game.ForecastTempHigh}} Fahrenheit</td>
+                        </tr>
+                         <tr>
+                            <td>Forecast: {{gameModal.game.ForecastDescription}}</td>
+                        </tr>
+                         <tr>
+                            <td>Wind Speed: {{gameModal.game.ForecastWindSpeed}} MPH </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='modal-footer'>
+            </div>
+        </div>
+    </div>
+</div>
